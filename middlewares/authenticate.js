@@ -14,6 +14,10 @@ const authenticate = async (req, res, next) => {
     next(HttpError(401));
   }
 
+  if (!token) {
+    return res.status(400).json({ code: 400, message: "No token provided" });
+  }
+
   try {
     const { id } = jwt.verify(token, SECRET_KEY);
     const user = await User.findById(id);
