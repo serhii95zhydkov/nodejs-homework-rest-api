@@ -9,12 +9,17 @@ const { authenticate, upload } = require("../../middlewares");
 const {
   registerSchema,
   loginSchema,
+  emailSchema,
   subscriptionUpdateSchema,
 } = require("../../models");
 
 const authRouter = express.Router();
 
 authRouter.post("/register", validateBody(registerSchema), ctrl.register);
+
+authRouter.get("/verify/:verificationToken", ctrl.verify);
+
+authRouter.post("/verify", validateBody(emailSchema), ctrl.resendVerifyEmail);
 
 authRouter.post("/login", validateBody(loginSchema), ctrl.login);
 
