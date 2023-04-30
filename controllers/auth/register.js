@@ -3,7 +3,9 @@ const gravatar = require("gravatar");
 const { nanoid } = require("nanoid");
 
 const { User } = require("../../models");
-const { HttpError, sendEmail } = require("../../helpers");
+const { HttpError } = require("../../helpers");
+
+const { sendEmail } = require("../../services/email");
 
 const { BASE_URL } = process.env;
 
